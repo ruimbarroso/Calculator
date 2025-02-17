@@ -2,7 +2,8 @@
 
 This project is a calculator application built using the Go programming language and the Fyne GUI library. The calculator supports a variety of mathematical operations and provides a simple graphical user interface (GUI) for interacting with it. Additionally, it features a history log that keeps track of previously executed equations.
 
-![[Pasted image 20241219180633.png]]
+![Calculator App image](https://github.com/ruimbarroso/Calculator/blob/main/images/Screenshot%202024-12-19%20180615.png)
+
 ## Features
 
 ### Supported Operations:
