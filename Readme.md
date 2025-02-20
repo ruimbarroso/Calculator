@@ -50,7 +50,7 @@ go get fyne.io/fyne/v2
 go run main.go
 ```
 
-## Pre-built Binary for Windows
+### Pre-built Binary for Windows
 
 For convenience, a pre-built executable for Windows 11/10 (64-bit) is already available in the build folder. You can run the calculator.exe directly without the need for compilation.
 
