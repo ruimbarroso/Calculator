@@ -30,8 +30,6 @@ var equations = []EquationResult{
 	{")45.2+81(", -1},
 }
 
-// Tokenize(equations[i]) []Token
-// fmt.Println(tokens[i].ToString())
 func TestTokenizeEquations(t *testing.T) {
 	for i, res := range equations {
 		tokens := lexer.Tokenize(res.eq)

@@ -27,14 +27,6 @@ func (l *lexer) push(token *Token) {
 	l.Tokens = append(l.Tokens, *token)
 }
 
-func (lex *lexer) at() byte {
-	return lex.source[lex.pos]
-}
-
-func (lex *lexer) advance() {
-	lex.pos += 1
-}
-
 func (lex *lexer) remainder() string {
 	return lex.source[lex.pos:]
 }
@@ -43,6 +35,9 @@ func (lex *lexer) at_end() bool {
 	return lex.pos >= len(lex.source)
 }
 
+// Tokenize takes a source equation as input and returns a slice of Tokens.
+// It processes the source string, identifies tokens based on predefined patterns,
+// and handles errors for unrecognized tokens.
 func Tokenize(source string) []Token {
 	lex := createNewLexer(strings.ReplaceAll(source, " ", ""))
 

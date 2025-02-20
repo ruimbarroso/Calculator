@@ -6,12 +6,17 @@ import (
 	"math"
 )
 
+// Expr represents an equation expression that can be converted to a string and evaluated.
 type Expr interface {
+	// ToString returns a string representation of the expression.
 	ToString() string
+	// Eval computes and returns the value of the expression.
 	Eval() float64
 }
 
+// NumberExpr represents a numeric expression.
 type NumberExpr struct {
+	// Value holds the numeric value of the expression.
 	Value float64
 }
 
@@ -22,10 +27,15 @@ func (n NumberExpr) Eval() float64 {
 	return n.Value
 }
 
+// BinaryExpr represents an expression with a binary operator.
+// It contains a left-hand expression, an operator token, and a right-hand expression.
 type BinaryExpr struct {
-	Left     Expr
+	// Left is the expression on the left side of the operator.
+	Left Expr
+	// Operator is the token representing the binary operator.
 	Operator lexer.Token
-	Right    Expr
+	// Right is the expression on the right side of the operator.
+	Right Expr
 }
 
 func (n BinaryExpr) ToString() string {
@@ -61,9 +71,13 @@ func round(value float64, precision int) float64 {
 	return math.Round(value*factor) / factor
 }
 
+// UnaryExpr represents an expression with a unary operator.
+// It contains an operator token and a member expression upon which the operator is applied.
 type UnaryExpr struct {
+	// Operator is the token representing the unary operator.
 	Operator lexer.Token
-	Member   Expr
+	// Member is the expression on which the operator is applied.
+	Member Expr
 }
 
 func (n UnaryExpr) ToString() string {

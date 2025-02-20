@@ -24,34 +24,35 @@ The application keeps a history of all the equations that have been executed. Th
 ## Installation
 
 ### Prerequisites:
-- Go (version 1.23.1 or above)
-- Fyne (GUI library for Go, v2.5.2)
+- Go (version 1.23.1 or later)
+- Fyne (fyne.io/fyne/v2, version 2.5.4) – GUI library for Go
+- Litter (github.com/sanity-io/litter, version 1.5.8) – Library for pretty-printing Go data structures
 
 ### Steps to Install:
 
 1. Clone the repository to your local machine:
 ```bash
     git clone https://github.com/yourusername/yourrepositoryname.git
-````
+```
     
 2. Navigate to the project directory:
-    
-    ```bash
-    cd yourrepositoryname
-    ```
+```bash
+cd yourrepositoryname
+```
     
 3. Install the required dependencies:
-    
-    ```bash
-    go get fyne.io/fyne/v2
-    ```
+```bash
+go get fyne.io/fyne/v2
+```
     
 4. Build and run the application:
-    
-    ```bash
-    go run main.go
-    ```
-    
+```bash
+go run main.go
+```
+
+## Pre-built Binary for Windows
+
+For convenience, a pre-built executable for Windows 11/10 (64-bit) is already available in the build folder. You can run the calculator.exe directly without the need for compilation.
 
 ### Running the Application
 
@@ -67,6 +68,8 @@ The application follows the standard order of operations (PEMDAS):
 4. **Addition/Subtraction**
 
 The core logic for evaluating mathematical expressions is implemented in the Go code, and the results are displayed via the Fyne GUI. The user can enter expressions into the input field, and the result is computed and displayed immediately.
+
+The parsing of mathematical expressions is achieved using a Pratt Parser approach with lookup tables. This design allows for a flexible and efficient handling of operator precedence and associativity, making it easier to extend and maintain the parsing logic.
 
 ## Example Operations:
 

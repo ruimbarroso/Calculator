@@ -31,8 +31,6 @@ func (p *parser) expect(expectedKind lexer.TokenKind) lexer.Token {
 	return p.advance()
 }
 func createParser(tokens []lexer.Token) *parser {
-	/* createTokenLookups()
-	createTypeTokenLookups() */
 	createTokenLookups()
 	p := &parser{
 		tokens: tokens,
@@ -42,11 +40,13 @@ func createParser(tokens []lexer.Token) *parser {
 	return p
 }
 
+// Parse takes a source string representing an expression, tokenizes it,
+// and returns the parsed expression as an Expr.
+// It uses panic recovery to catch and report parsing errors.
 func Parse(source string) Expr {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Printf("\n\nerror parsing equation\n\n")
-			// return errors.New("error parsing equation")
 		}
 	}()
 	tokens := lexer.Tokenize(source)
@@ -56,6 +56,12 @@ func Parse(source string) Expr {
 	return expr
 }
 
+// parse_expr parses an expression using a Pratt parser.
+// It takes a parser instance and a binding power value that controls operator precedence.
+// The function first uses a null denotation (nud) handler for the current token
+// to parse the left-hand side of the expression. Then, while the binding power of the
+// current token is greater than the provided binding power, it uses a left denotation (led)
+// handler to parse the operator and its right-hand expression.
 func parse_expr(p *parser, bp binding_power) Expr {
 	tokenKind := p.current().Kind
 	nud_fn, exists := nud_lu[tokenKind]

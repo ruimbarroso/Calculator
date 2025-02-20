@@ -41,18 +41,21 @@ func (t *CalculatorController) OldCalculate() {
 }
 
 func (t *CalculatorController) Calculate() {
-	res := parser.Parse(strings.ReplaceAll(t.equation.Equation, "|", ""))
+	expr := parser.Parse(strings.ReplaceAll(t.equation.Equation, "|", ""))
 
-	litter.Dump(res)
+	if expr == nil {
+		t.Display.SetText(ErrorMSG)
+		return
+	}
+
+	res := expr.Eval()
+	fmt.Printf("Equation: %s\nResult: %g\n", expr.ToString(), res)
+	litter.Dump(expr)
 
 	t.InsertInHistory()
 	t.Clear()
 
-	if res == nil {
-		t.Display.SetText(ErrorMSG)
-	} else {
-		t.Display.SetText(fmt.Sprintf("%g", res.Eval()))
-	}
+	t.Display.SetText(fmt.Sprintf("%g", res))
 
 }
 func New(display *widget.Entry) *CalculatorController {
