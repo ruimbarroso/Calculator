@@ -5,10 +5,12 @@ package controller
 
 import (
 	"calculator/src/model"
+	"calculator/src/parser"
 	"fmt"
 	"strings"
 
 	"fyne.io/fyne/v2/widget"
+	"github.com/sanity-io/litter"
 )
 
 const (
@@ -24,8 +26,7 @@ type CalculatorController struct {
 	cursorIndex  int
 }
 
-func (t *CalculatorController) Calculate() {
-
+func (t *CalculatorController) OldCalculate() {
 	res, err := model.Evaluate(t.equation.ParseEquation(Cursor))
 
 	t.InsertInHistory()
@@ -35,6 +36,22 @@ func (t *CalculatorController) Calculate() {
 		t.Display.SetText(ErrorMSG)
 	} else {
 		t.Display.SetText(fmt.Sprintf("%g", res))
+	}
+
+}
+
+func (t *CalculatorController) Calculate() {
+	res := parser.Parse(strings.ReplaceAll(t.equation.Equation, "|", ""))
+
+	litter.Dump(res)
+
+	t.InsertInHistory()
+	t.Clear()
+
+	if res == nil {
+		t.Display.SetText(ErrorMSG)
+	} else {
+		t.Display.SetText(fmt.Sprintf("%g", res.Eval()))
 	}
 
 }

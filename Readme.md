@@ -72,8 +72,9 @@ The core logic for evaluating mathematical expressions is implemented in the Go 
 
 - `2 + 2` will give the result: `4`
 - `3 * (2 + 4)` will compute `3 * 6` and give the result: `18`
-- `2 ^ 3` will compute `2^3` and give the result: `8`
-- `100 l 10` will compute `log(100) base 10` and give the result: `2`
+- `2 ^3` will compute `2^3` and give the result: `8`
+- `8 r3` will compute `8^(1/3)` and give the result: `2`
+- `100 l10` will compute `log(100) base 10` and give the result: `2`
 
 ## License
 
