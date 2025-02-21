@@ -1,3 +1,5 @@
+// Copyright (c) 2025 Rui Barroso
+// This code is licensed under the MIT License.
 package parser_test
 
 import (
